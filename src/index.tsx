@@ -5,10 +5,14 @@ import ReactDOM from 'react-dom';
 import RootApp from 'App';
 import store from 'store';
 import { register } from 'serviceWorker';
+import { ThemeProvider } from 'styled-components';
+import { themes } from './styles';
 
 ReactDOM.render(
   <Provider store={store}>
-    <RootApp />
+    <ThemeProvider theme={themes.default}>
+      <RootApp />
+    </ThemeProvider>
   </Provider>,
   document.querySelector('#root')
 );

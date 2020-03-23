@@ -1,29 +1,20 @@
-import React, { lazy, Suspense } from 'react';
+import React from 'react';
 import { Switch, Route } from 'react-router-dom';
-
-import GlobalStyles from 'styles/globals';
-import { themes } from 'styles';
-import Navbar from 'components/Navbar';
-
-const Home = lazy(() => import('pages/Home'));
-
-interface RouteProps {
-  path: string;
-  exact: boolean;
-}
+import Home from 'pages/Home';
+import GlobalFonts from "../fonts/fonts";
+import GlobalStyles from "../styles/globals";
+import NavBar from "../components/NavBar";
 
 const routes = (
-  <React.Fragment>
+  <>
+    <GlobalFonts />
     <GlobalStyles />
-    <Navbar theme={themes.default} />
-    <Suspense fallback={<div>Loading...</div>}>
-      <Switch>
-        <Route path="/" exact={true}>
-          <Home />
-        </Route>
-      </Switch>
-    </Suspense>
-  </React.Fragment>
+    <NavBar />
+    <Switch>
+      <Route path="/" exact component={Home} />
+      <Route path="/about" exact component={Home} />
+    </Switch>
+  </>
 );
 
 export default routes;

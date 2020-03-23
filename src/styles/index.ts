@@ -1,4 +1,5 @@
-import { dark, brand, white, grey, light } from "styles/colors";
+import { white, primary, secondary, gray } from 'styles/colors';
+import { breakpoints } from './responsive';
 
 export const baseSize = 16;
 
@@ -9,33 +10,30 @@ export const pxToVw = (px: number, width: number): string =>
 
 export const themes = {
   default: {
-    background: brand,
+    flexboxgrid: {
+      // Defaults
+      gridSize: 12, // columns
+      gutterWidth: 2, // rem
+      outerMargin: 0, // rem
+      mediaQuery: 'only screen',
+      breakpoints: breakpoints
+    },
+    palette: {
+      primary: primary,
+      secondary: secondary
+    },
     color: white,
     logoColor: white,
-    activeNavColor: dark,
-    badgeColor: brand,
-    badgeBackground: white,
-    topNavBackground: white,
-    searchBackground: light
-  },
-  dark: {
-    background: dark,
-    color: white,
-    logoColor: brand,
-    activeNavColor: brand,
-    badgeColor: white,
-    badgeBackground: brand,
-    topNavBackground: light,
-    searchBackground: grey
-  },
-  white: {
-    background: white,
-    color: dark,
-    logoColor: brand,
-    activeNavColor: brand,
-    badgeColor: white,
-    badgeBackground: brand,
-    topNavBackground: light,
-    searchBackground: light
+    navBackground: gray[100],
+    section: {
+      light: {
+        background: white,
+        color: primary
+      },
+      dark: {
+        background: primary,
+        color: white
+      }
+    }
   }
 };
