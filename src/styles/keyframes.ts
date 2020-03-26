@@ -1,6 +1,6 @@
-import { keyframes } from 'styled-components';
+import { Keyframes, keyframes } from 'styled-components';
 
-export const pulse = keyframes`
+export const pulse: Keyframes = keyframes`
   0% {
     transform: scale(1)
   }

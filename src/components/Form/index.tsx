@@ -11,12 +11,8 @@ interface Values {
   city?: string;
 }
 
-const delay = (ms: number) => new Promise(resolve => setTimeout(resolve, ms));
-
-const onSubmit = async (values: Values) => {
-  console.log("here", values);
-  await delay(300);
-  window.alert(JSON.stringify(values, undefined, 2));
+const onSubmit = (values: Values) => {
+  // Submit the data
 };
 
 type Props = FieldRenderProps<string, any>;
@@ -34,9 +30,7 @@ const ContactForm: React.FunctionComponent = (props) => {
                   <Col xs={ 12 } md={ 12 }>
                     <Field<string>
                       name="name"
-                      component={({ input, meta, ...rest }: Props) => (
-                        <Input type="text" {...input} {...rest} />
-                      )}
+                      component={Input}
                       placeholder={'Navn'}
                     />
                   </Col>

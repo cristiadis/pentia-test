@@ -1,12 +1,16 @@
 import { white, primary, secondary, gray } from 'styles/colors';
 import { breakpoints } from './responsive';
 
-export const baseSize = 16;
+export const baseSize: number = 16;
 
 export const pxToRem = (px: number): string => `${px / baseSize}rem`;
 
 export const pxToVw = (px: number, width: number): string =>
   `${(100 * px) / width}vw`;
+
+interface Themes {
+  //to be added
+}
 
 export const themes = {
   default: {

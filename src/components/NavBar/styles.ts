@@ -157,7 +157,7 @@ const Menu = styled.div<MenuProps>`
   text-align: center;
   
   ${ above(sm) } {
-    transform: translate3d(${({isOpen}) => isOpen ? '-50%, -50%, 0' : '-300px, -50%, 0'});
+    transform: translate3d(${({isOpen}) => isOpen ? '-50%, -50%, 0' : '-400%, -50%, 0'});
   }
   
   a {
