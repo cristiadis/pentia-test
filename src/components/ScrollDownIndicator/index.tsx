@@ -3,7 +3,7 @@ import { Button, Icon } from "./styles";
 
 const ScrollDownIndicator: React.FunctionComponent = (props) => {
   return (
-    <Button>
+    <Button href={'#offer'}>
       { props.children }
       <Icon>
         <span></span>

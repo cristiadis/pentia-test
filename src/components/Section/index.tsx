@@ -1,6 +1,7 @@
 import React from 'react';
-import { Container } from './styles';
-import { Col, Grid, Row } from "react-styled-flexboxgrid";
+import { Container, Content } from './styles';
+import { Col, Row } from "react-styled-flexboxgrid";
+import HeroImage from "../HeroImage";
 
 type Background = {
   color?: string;
@@ -15,15 +16,19 @@ export interface SectionProps {
 }
 
 const Section: React.FunctionComponent<SectionProps> = (props) => {
+  const { background } = props;
   return (
     <Container {...props}>
-      <Grid>
+      { background && background.image &&
+        <HeroImage imageSrc={background.image} />
+      }
+      <Content>
         <Row center={'xs'}>
           <Col xs={12} md={10} lg={10}>
             { props.children }
           </Col>
         </Row>
-      </Grid>
+      </Content>
     </Container>
   );
 };

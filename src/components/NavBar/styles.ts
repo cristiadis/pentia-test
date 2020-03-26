@@ -2,18 +2,21 @@ import styled from 'styled-components/macro';
 import { pxToRem } from 'styles';
 import { breakpoints, above } from 'styles/responsive';
 import { ReactComponent as PentiaLogo } from 'assets/logo.svg';
+import { NavLink } from 'react-router-dom';
 
-const { md, lg } = breakpoints;
+const { sm } = breakpoints;
 
-type MenuProps = {
-  active: boolean;
+type isNavOpen = {
+  isOpen: boolean;
 }
 
-const Container = styled.nav`
-  align-items: center;
-  height: 100%;
-  width: 73px;
-  font-family: Montserrat, 'Lucida Sans Unicode', 'Lucida Grande', sans-serif;
+interface MenuProps extends isNavOpen {}
+interface NavBarProps extends isNavOpen {}
+
+const Container = styled.nav<NavBarProps>`
+  height: ${({isOpen}) => isOpen ? '100vh' : '73px' };
+  transition: height 400ms cubic-bezier(0.215, 0.61, 0.355, 1);
+  width: 100vw;
   font-size: ${ pxToRem(20) };
   background: ${ ({ theme }) => theme.navBackground };
   color: ${ ({ theme }) => theme.color };
@@ -23,61 +26,143 @@ const Container = styled.nav`
   left: 0;
   z-index: 5;
   padding: 21px;
+  display: flex;
+  justify-content: space-between;
 
-  ${ above(md) } {
-  }
- 
-  ${ above(lg) } {
+  ${ above(sm) } {
+    height: 100vh;
+    width: ${({isOpen}) => isOpen ? '400px' : '73px' };
+    transition: width 400ms cubic-bezier(0.215, 0.61, 0.355, 1);
+    font-size: ${ pxToRem(20) };
+    background: ${ ({ theme }) => theme.navBackground };
+    color: ${ ({ theme }) => theme.color };
+    box-sizing: border-box;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 5;
+    padding: 21px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
   }
 `;
 
 const Logo = styled(PentiaLogo)`
   fill: ${ ({ theme }) => theme.color };
+  height: 100%;
+  max-height: 31px;
+  
+  ${ above(sm) } {
+    height: auto;
+    width: 100%;
+    max-width: 31px;
+  }
 `;
 
-const Menu = styled.button<MenuProps>`
-  width: 100%;
+const LogoLink = styled(NavLink)`
+  display: inline-block;
+  height: 31px;
+`;
+
+const Hamburger = styled.button<MenuProps>`
+  width: 31px;
+  max-height: 31px;
   position: relative;
-  height: 100%;
   display: block;
   
-  .container {
+  ${ above(sm) } {
     width: 100%;
-    height: 18px;
-    position: absolute;
+    max-width: 31px;
+    margin-top: -40px;
     top: 50%;
+    align-self: flex-end;
+  }
+  
+  .container {
+    position: relative;
+    width: 31px;
+    height: 18px;
   }
   
   span {
-    background: ${({ theme }) => theme.logoColor};
-    width: 100%;
-    height: ${pxToRem(1)};
-    display: block;
-    margin: ${pxToRem(-2)} 0 0;
-    position: absolute;
-    left: 0;
-    right: 0;
     top: 50%;
-    transition: 0.3s ease;
+    display: block;
+    margin-top: -2px;
+    background-color: ${({isOpen}) => isOpen ? 'transparent' : 'white'};
     
-    &:first-child {
-      top: 0;
-      opacity: ${({ active }) => (active ? 0 : 1)};
+    ${ above(sm) } {
+      background-color: white;
     }
+  }
+  
+  span, 
+  span:before, 
+  span:after {
+    position: absolute;
+    width: 31px;
+    height: 1px;
+    transition-timing-function: ease;
+    transition-duration: .15s;
+    transition-property: transform;
+  }
+  
+  span:after, 
+  span:before {
+    display: block;
+    content: "";
+    background-color: white;
+    transition-property: top, bottom, transform;
+    transition-timing-function: cubic-bezier(0.215, 0.61, 0.355, 1);
+    transition-duration: .2s;
+    transition-delay: ${({ isOpen }) => isOpen ? '0s, 0s, .1s': '.1s, .1s, 0s'};
+  }
+  
+  span:before {
+    top: ${({ isOpen }) => isOpen ? '0' : '-9px'};
+    transform: ${({ isOpen }) => isOpen ? 'rotate(-45deg)' : 'none'};
     
-    &:last-child {
-      bottom: 0;
-      opacity: ${({ active }) => (active ? 0 : 1)};
-      top: auto;
+    ${ above(sm) } {
+      top: -9px;
+      transform: ${({ isOpen }) => isOpen ? 'translate3d(-9px,0,0) rotate(-45deg) scaleX(.8)' : 'none'};
     }
+  }
+  
+  span:after {
+    bottom: ${({ isOpen }) => isOpen ? '0' : '-9px'};
+    transform: ${({ isOpen }) => isOpen ? 'rotate(45deg)' : 'none'};
     
-    &:nth-child(2) {
-      transform: ${({ active }) => active && 'rotate(45deg)'};
-    }
-    
-    &:nth-child(3) {
-      transform: ${({ active }) => active && 'rotate(-45deg)'};
+    ${ above(sm) } {
+      bottom: -9px;
+      transform: ${({ isOpen }) => isOpen ? 'translate3d(-9px,0,0) rotate(45deg) scaleX(.8);' : 'none'};
     }
   }
 `;
-export { Container, Logo, Menu };
+
+const MenuItem = styled(NavLink)`
+  display: block;
+  color: white;
+  text-decoration: none;
+  margin: 20px 0;
+  transition: opacity 500ms cubic-bezier(0.215, 0.61, 0.355, 1);
+`;
+
+const Menu = styled.div<MenuProps>`
+  top: 50%;
+  left: 50%;
+  transition: transform 500ms cubic-bezier(0.215, 0.61, 0.355, 1);
+  transform: translate3d(${({isOpen}) => isOpen ? '-50%, -50%, 0' : '-50%, -150%, 0'});
+  position: absolute;
+  text-align: center;
+  
+  ${ above(sm) } {
+    transform: translate3d(${({isOpen}) => isOpen ? '-50%, -50%, 0' : '-300px, -50%, 0'});
+  }
+  
+  a {
+    opacity: ${({isOpen}) => isOpen ? 1 : 0};
+  }
+`;
+
+export { Container, Logo, LogoLink, Hamburger, MenuItem, Menu };

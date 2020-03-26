@@ -1,7 +1,7 @@
 import styled from 'styled-components/macro';
 import { pulse } from 'styles/keyframes';
 
-const Button = styled.button`
+const Button = styled.a`
   position: absolute;
   bottom: 15px;
   left: 50%;
@@ -9,6 +9,7 @@ const Button = styled.button`
   font-weight: 900;
   font-size: 12px;
   color: white;
+  text-decoration: none;
 `;
 
 const Icon = styled.span`

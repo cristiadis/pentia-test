@@ -10,10 +10,19 @@ const Home: React.FunctionComponent = (props) => {
 
   return (
     <>
-      <Section>
+      <Section
+        background={{
+          /* Uncomment this code to activate the Hero image
+          image: 'https://pentia.dk//media/igddi3dq/homeoffice_2.jpg'
+          */
+        }}
+      >
         <Intro />
       </Section>
-      <Section palette={'light'}>
+      <Section
+        palette={'light'}
+        id={'#offer'}
+      >
         <Info />
       </Section>
       <Section

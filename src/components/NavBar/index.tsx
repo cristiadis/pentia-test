@@ -1,28 +1,40 @@
-import React, { useState } from 'react';
-import { Container, Logo, Menu } from "./styles";
-import { NavLink } from 'react-router-dom';
+import React, { useEffect, useState } from 'react';
+import { Container, Logo, LogoLink, Hamburger, Menu, MenuItem } from "./styles";
+import { RouteComponentProps, withRouter } from "react-router";
 
-const NavBar: React.FunctionComponent = (props) => {
-  const [navActive, toggleNav] = useState(false);
+interface NavBarProps extends RouteComponentProps {};
+
+const NavBar: React.FunctionComponent<NavBarProps> = ({ location }) => {
+  const [isOpen, toggleNav] = useState<boolean>(false);
+
+  useEffect(() => {
+    toggleNav(false);
+  }, [location]);
 
   return (
-    <Container>
-      <NavLink to={'/'} exact>
+    <Container isOpen={isOpen}>
+      <LogoLink to={'/'} exact>
         <Logo />
-      </NavLink>
-      <Menu
-        active={navActive}
-        onClick={() => toggleNav(!navActive)}
+      </LogoLink>
+      <Hamburger
+        isOpen={isOpen}
+        onClick={() => toggleNav(!isOpen)}
       >
         <div className="container">
           <span />
-          <span />
-          <span />
-          <span />
         </div>
+      </Hamburger>
+      <Menu isOpen={isOpen}>
+        <MenuItem to={'/'} exact>Home</MenuItem>
+        <MenuItem to={'/cases'} exact>Cases</MenuItem>
+        <MenuItem to={'/services'} exact>Services</MenuItem>
+        <MenuItem to={'/karriere'} exact>Karriere</MenuItem>
+        <MenuItem to={'/nyt'} exact>Nyt</MenuItem>
+        <MenuItem to={'/events'} exact>Events</MenuItem>
+        <MenuItem to={'/om-pentia'} exact>Om Pentia</MenuItem>
       </Menu>
     </Container>
   );
 };
 
-export default NavBar;
+export default withRouter(NavBar);
