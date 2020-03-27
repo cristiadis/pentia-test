@@ -12,9 +12,10 @@ const routes = (
     <NavBar />
     <ScrollProgressIndicator />
     <ScrollHandler />
+    /* TODO: Add page transitions */
     <Switch>
       <Route path="/" exact component={Home} />
-      <Route path="/about" exact component={Home} />
+      /* TODO: Add remaining routes */
     </Switch>
   </>
 );

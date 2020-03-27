@@ -24,7 +24,8 @@ export const themes = {
     },
     palette: {
       primary: primary,
-      secondary: secondary
+      secondary: secondary,
+      gray: gray
     },
     color: white,
     logoColor: white,

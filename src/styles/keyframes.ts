@@ -5,7 +5,7 @@ export const pulse: Keyframes = keyframes`
     transform: scale(1)
   }
   20% {
-    transform: scale(1.7)
+    transform: scale(2)
   }
   40% {
     transform: scale(1)

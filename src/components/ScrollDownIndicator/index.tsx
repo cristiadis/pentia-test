@@ -6,9 +6,9 @@ const ScrollDownIndicator: React.FunctionComponent = (props) => {
     <Button href={'#offer'}>
       { props.children }
       <Icon>
-        <span></span>
-        <span></span>
-        <span></span>
+        <span/>
+        <span/>
+        <span/>
       </Icon>
     </Button>
   );
