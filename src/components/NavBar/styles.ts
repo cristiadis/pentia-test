@@ -141,23 +141,45 @@ const Hamburger = styled.button<MenuProps>`
 `;
 
 const MenuItem = styled(NavLink)`
-  display: block;
+  display: inline-block;
   color: white;
   text-decoration: none;
   margin: 20px 0;
   transition: opacity 500ms cubic-bezier(0.215, 0.61, 0.355, 1);
+  position: relative;
+  
+  &:after {
+    content: '';
+    display: block;
+    width: 0;
+    bottom: -5px;
+    position: absolute;
+    height: 1px;
+    background: white;
+    transition: width 200ms cubic-bezier(0.215, 0.61, 0.355, 1);
+  }
+  
+  &:hover:after {
+    width: 100%;
+  } 
 `;
 
-const Menu = styled.div<MenuProps>`
+const Menu = styled.ul<MenuProps>`
   top: 50%;
   left: 50%;
   transition: transform 500ms cubic-bezier(0.215, 0.61, 0.355, 1);
   transform: translate3d(${({isOpen}) => isOpen ? '-50%, -50%, 0' : '-50%, -150%, 0'});
   position: absolute;
   text-align: center;
+  padding: 0;
   
   ${ above(sm) } {
     transform: translate3d(${({isOpen}) => isOpen ? '-50%, -50%, 0' : '-400%, -50%, 0'});
+  }
+  
+  li {
+    list-style: none;
+    padding: 0;
   }
   
   a {

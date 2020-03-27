@@ -25,13 +25,27 @@ const NavBar: React.FunctionComponent<NavBarProps> = ({ location }) => {
         </div>
       </Hamburger>
       <Menu isOpen={isOpen}>
-        <MenuItem to={'/'} exact>Home</MenuItem>
-        <MenuItem to={'/cases'} exact>Cases</MenuItem>
-        <MenuItem to={'/services'} exact>Services</MenuItem>
-        <MenuItem to={'/karriere'} exact>Karriere</MenuItem>
-        <MenuItem to={'/nyt'} exact>Nyt</MenuItem>
-        <MenuItem to={'/events'} exact>Events</MenuItem>
-        <MenuItem to={'/om-pentia'} exact>Om Pentia</MenuItem>
+        <li>
+          <MenuItem to={'/'} exact>Home</MenuItem>
+        </li>
+        <li>
+          <MenuItem to={'/cases'} exact>Cases</MenuItem>
+        </li>
+        <li>
+          <MenuItem to={'/services'} exact>Services</MenuItem>
+        </li>
+        <li>
+          <MenuItem to={'/karriere'} exact>Karriere</MenuItem>
+        </li>
+        <li>
+          <MenuItem to={'/nyt'} exact>Nyt</MenuItem>
+        </li>
+        <li>
+          <MenuItem to={'/events'} exact>Events</MenuItem>
+        </li>
+        <li>
+          <MenuItem to={'/om-pentia'} exact>Om Pentia</MenuItem>
+        </li>
       </Menu>
     </Container>
   );
