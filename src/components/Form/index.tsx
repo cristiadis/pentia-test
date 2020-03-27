@@ -15,6 +15,8 @@ const onSubmit = (values: Values) => {
   // Submit the data
 };
 
+//TODO: Add validation, and connect the Fields components properly to the Input
+
 type Props = FieldRenderProps<string, any>;
 
 const ContactForm: React.FunctionComponent = (props) => {
