@@ -3,9 +3,13 @@ import { above, breakpoints } from "styles/responsive";
 
 const { sm } = breakpoints;
 
-const Input = styled.input`
+interface InputProps {
+  hasError?: boolean;
+}
+
+const Input = styled.input<InputProps>`
   appearance: none;
-  background: transparent;
+  background-color: transparent;
   transition: box-shadow 200ms ease-in-out;
   border: 0;
   outline: 0;
@@ -17,6 +21,7 @@ const Input = styled.input`
   font-size: 16px;
   margin-bottom: 20px;
   box-sizing: border-box;
+ 
   
   &::placeholder {
     color: white;
@@ -60,4 +65,19 @@ const Submit = styled.button`
   }
 `;
 
-export { Input, Submit };
+const InputError = styled.span`
+  margin-top: -15px;
+  text-align: left;
+  display: block;
+  font-size: 13px;
+  
+  svg {
+    fill: white;
+    width: 15px;
+    height: 15px;
+    margin-right: 5px;
+    vertical-align: text-bottom;
+  }
+`;
+
+export { Input, Submit, InputError };
